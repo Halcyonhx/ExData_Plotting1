@@ -1,0 +1,12 @@
+
+png(filename = "plot4.png", width = 480)
+par(mfcol = c(2,2))
+with(subData, plot(Time, Global_active_power, type = 'l', xlab = "", ylab = "Global Active Power"))
+plot(subData$Time, subData$Sub_metering_1, type = "n", xlab = "", ylab = "Energy sub metering")
+lines(subData$Time, subData$Sub_metering_1, col = "black")
+lines(subData$Time, subData$Sub_metering_2, col = "red")
+lines(subData$Time, subData$Sub_metering_3, col = "blue")
+legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty = 1,col = c("black", "red", "blue"), cex = 0.5)
+with(subData, plot(Time, Global_reactive_power, type = 'l', xlab = "datetime", ylab = "Global_reactive_power"))
+with(subData, plot(Time, Voltage, type = 'l', xlab = "datetime", ylab = "Voltage"))
+dev.off()

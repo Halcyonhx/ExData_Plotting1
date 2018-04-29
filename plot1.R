@@ -1,0 +1,10 @@
+unzip("exdata_data_household_power_consumption.zip")
+initial <- read.table("household_power_consumption.txt", nrows = 50)
+classes <- sapply(initial, class)
+tabALL <- read.table("household_power_consumption.txt", sep = ";", colClasses = classes, header = TRUE, stringsAsFactors = FALSE)
+subData <- subset(tabALL, as.Date(tabALL$Date, format = "%d/%m/%Y") == as.Date("2007-02-01") | as.Date(tabALL$Date, format = "%d/%m/%Y") == as.Date("2007-02-02"))
+subData$Global_active_power <- as.numeric(subData$Global_active_power)
+png(filename = "plot1.png", width = 480)
+with(subData, hist(Global_active_power, col = "red", xlab = "Global Active Power (kilowatts)",
+                   main = "Global Active Power"))
+dev.off()
